@@ -132,5 +132,8 @@ ENV CARGO_TARGET_MIPS64_OPENWRT_LINUX_MUSL_RUSTFLAGS='-C target-feature=+crt-sta
 ENV CARGO_TARGET_MIPS64_UNKNOWN_LINUX_MUSLABI64_RUSTFLAGS='-C target-feature=+crt-static'
 ENV CARGO_TARGET_MIPS64EL_UNKNOWN_LINUX_MUSLABI64_RUSTFLAGS='-C target-feature=+crt-static'
 
+# Build statically linked binaries for RISCV64GC targets
+ENV CARGO_TARGET_RISCV64GC_UNKNOWN_LINUX_MUSL_RUSTFLAGS='-C target-feature=+crt-static'
+
 # Expect our source code to live in /home/rust/src
 WORKDIR /home/rust/src
