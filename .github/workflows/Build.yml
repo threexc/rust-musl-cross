@@ -1,5 +1,10 @@
 on:
   pull_request:
+    paths:
+      - "Dockerfile"
+  push:
+    paths:
+      - "Dockerfile"
   workflow_dispatch:
     inputs:
       no_cache:
