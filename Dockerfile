@@ -6,8 +6,11 @@ ENV DEBIAN_FRONTEND=noninteractive
 # here is to support the musl-libc builds and Cargo builds needed for a
 # large selection of the most popular crates.
 #
-RUN apt-get update && \
-    apt-get install -y \
+RUN for i in 1 2 3 4 5; do \
+        apt-get update && break || sleep 5; \
+    done && \
+    for i in 1 2 3 4 5; do \
+        apt-get install -y \
     build-essential \
     cmake \
     curl \
@@ -27,7 +30,8 @@ RUN apt-get update && \
     llvm-dev \
     libclang-dev \
     clang \
-    && \
+    && break || { apt-get update; sleep 5; }; \
+    done && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install Let's Encrypt R3 CA certificate from https://letsencrypt.org/certificates/
