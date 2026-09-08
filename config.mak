@@ -29,7 +29,12 @@ MUSL_VER = 1.2.5
 # By default source archives are downloaded with wget. curl is also an option.
 
 # DL_CMD = wget -c -O
-DL_CMD = curl -C - -L -o
+DL_CMD = curl -C - -L -f --retry 5 --retry-delay 2 -o
+
+# ftpmirror.gnu.org sometimes round-robins to a stale mirror missing an
+# older release, returning a 502 that curl -f now catches instead of
+# silently writing to the source archive. Pin the canonical GNU host.
+GNU_SITE = https://ftp.gnu.org/gnu
 
 # Something like the following can be used to produce a static-linked
 # toolchain that's deployable to any system with matching arch, using
